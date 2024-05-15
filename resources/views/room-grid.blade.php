@@ -61,7 +61,7 @@
                                     </ul>
                                     <p>{{ implode(' ', array_slice(str_word_count($kamar->deskripsi, 1), 0, 20)) }}</p>
                                     <!-- Gunakan deskripsi kamar atau informasi lainnya -->
-                                    <div class="price">Price <span>Rp.
+                                    <div class="price"><span>Rp.
                                             {{ number_format($kamar->harga, 0, ',', '.') }}</span>/per night</div>
         
                                     <!-- Gunakan harga kamar -->

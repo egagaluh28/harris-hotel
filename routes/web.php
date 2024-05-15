@@ -1,72 +1,23 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RoomController;
 use App\Http\Controllers\GridRoomController;
-
-use App\Http\Controllers\KamarController;
-
-Route::get('/upload-kamar', [KamarController::class, 'index']);
-Route::post('/upload-kamar', [KamarController::class, 'create'])->name('upload-kamar');
-
-
-
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
-
-// login
-Route::get('/login', function () {
-    return view('login');
-});
-
-Route::get('/ini', function () {
-    return view('room-details');
-});
-
-
+use App\Http\Controllers\RoomController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 // Home
-Route::get('/', [RoomController::class, 'index']);
-
-
-
-// tes database
-
-Route::get('/test', function () {
-    $users = App\Models\Pengguna::all();
-    return view('test', compact('users'));
-});
-
-
-// Route::get('/', function () {
-//     $users = App\Models\Pengguna::all();
-//     return view('test', ['users' => $users]); // Kirim variabel $users ke view
-// });
-
-
-
-// Room
-Route::get('/room-grid', [GridRoomController::class, 'grid']);
-
-Route::get('/room-details/{id}', [GridRoomController::class, 'detail'])->name('room-details');
-
-// Route::get('/room-details', function () {
-//     return view('room-details');
-// });
-
-
-
-
-// Contact
+Route::get('/', [RoomController::class, 'index'])->name('home');
+Route::get('/room', [GridRoomController::class, 'grid'])->name('room-grid');
+Route::get('/room/{id}', [GridRoomController::class, 'detail'])->name('room-details');
 Route::get('/contact', function () {
     return view('contact');
 });
+
+
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [AuthController::class, 'register'])->name('register.post');

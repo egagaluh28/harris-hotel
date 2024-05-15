@@ -54,7 +54,7 @@
                                 </li>
                             @endif
                         </ul>
-                        <div class="price mb-35">Price: Rp. {{ number_format($kamar->harga, 0, ',', '.') }} Per Night</div>
+                        <div class="price mb-35">Rp. {{ number_format($kamar->harga, 0, ',', '.') }} Per Night</div>
 
                         <!-- Menampilkan harga per malam -->
                         <p>{{ $kamar->deskripsi }}</p> <!-- Menampilkan deskripsi kamar -->
@@ -98,7 +98,9 @@
 
                 <div class="col-lg-5">
                     <div class="room-details-sidebar bgc-lighter p-50 rp-40">
-                        <form class="widget-search-filter wow fadeInUp delay-0-4s">
+                        {{-- <form action="{{ route('pesan-kamar') }}" method="POST"
+                            class="widget-search-filter wow fadeInUp delay-0-4s">
+                            @csrf
                             <div class="form-group">
                                 <label for="checkin">Check In</label>
                                 <input type="date" id="checkin" required>
@@ -117,15 +119,12 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="children">Children</label>
-                                <select name="children" id="children">
-                                    <option value="children1">1</option>
-                                    <option value="children2" selected>2</option>
-                                    <option value="children3">3</option>
-                                </select>
+                                <label for="exampleInputEmail1">Email address</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="Enter email" required>
                             </div>
-                            <button class="theme-btn w-100">Check Availability <i class="far fa-angle-right"></i></button>
-                        </form>
+                            <button class="theme-btn w-100">Booking <i class="far fa-angle-right"></i></button>
+                        </form> --}}
                     </div>
                 </div>
             </div>

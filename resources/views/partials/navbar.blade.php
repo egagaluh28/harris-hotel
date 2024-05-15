@@ -5,10 +5,11 @@
 
             <div class="header-inner rel d-flex align-items-center justify-content-between">
                 <div class="logo-outer">
-                    <div class="logo"><a href="{{ url('/') }}"><img src="{{ asset('https://www.discoverasr.com/content/dam/tal/common/assets/logos/brands/tauzia/harris/harris-logo-132x80.png') }}"
+                    <div class="logo"><a href="{{ url('/') }}"><img
+                                src="{{ asset('https://www.discoverasr.com/content/dam/tal/common/assets/logos/brands/tauzia/harris/harris-logo-132x80.png') }}"
                                 alt="Logo" title="Logo"></a></div>
                 </div>
-                
+
 
                 <div class="nav-outer clearfix">
                     <!-- Main Menu -->
@@ -16,8 +17,8 @@
                         <div class="navbar-header">
                             <div class="mobile-logo my-15">
                                 <a href="index.html">
-                                    <img src="https://www.discoverasr.com/content/dam/tal/common/assets/logos/brands/tauzia/harris/harris-logo-132x80.png" alt="Logo"
-                                        title="Logo">
+                                    <img src="https://www.discoverasr.com/content/dam/tal/common/assets/logos/brands/tauzia/harris/harris-logo-132x80.png"
+                                        alt="Logo" title="Logo">
                                 </a>
                             </div>
 
@@ -33,8 +34,8 @@
                         <div class="navbar-collapse collapse clearfix">
                             <ul class="navigation clearfix ml-auto">
                                 <li><a href="/">Home</a></li>
-                                <li><a href="/room-grid">Room</a></li>
-                                <li><a href="/contact">Contact</a></li>
+                                <li><a href="/room">Room</a></li>
+                                <li><a href="/contact">About</a></li>
                             </ul>
                         </div>
                     </nav>
@@ -42,8 +43,18 @@
                 </div>
                 <!-- Menu Button -->
                 <div class="menu-btns">
-                    <a href="contact.html" class="theme-btn">Login <i class="far fa-angle-right"></i></a>
-                    <!-- menu sidbar -->
+                    @auth
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                        <a href="{{ route('logout') }}" class="theme-btn"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            Logout <i class="far fa-angle-right"></i>
+                        </a>
+                    @else
+                        <a href="{{ route('login') }}" class="theme-btn">Login <i class="far fa-angle-right"></i></a>
+                    @endauth
+                    <!-- menu sidebar -->
                 </div>
             </div>
         </div>

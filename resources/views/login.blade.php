@@ -32,7 +32,7 @@
 </head>
 
 <body>
-    
+
     <div class="section">
         <div class="container">
             <div class="row full-height justify-content-center">
@@ -46,43 +46,73 @@
                                 <div class="card-front">
                                     <div class="center-wrap">
                                         <div class="section text-center">
-                                            <h4 class="mb-4 pb-3">Log In</h4>
-                                            <div class="form-group">
-                                                <input type="email" name="logemail" class="form-style"
-                                                    placeholder="Your Email" id="logemail" autocomplete="off">
-                                                <i class="input-icon fa fa-envelope"></i>
-                                            </div>
-                                            <div class="form-group mt-2">
-                                                <input type="password" name="logpass" class="form-style"
-                                                    placeholder="Your Password" id="logpass" autocomplete="off">
-                                                <i class="input-icon fa fa-lock"></i>
-                                            </div>
-                                            <a href="#" class="btn mt-4">Login</a>
-                                            <p class="mb-0 mt-4 text-center"><a href="#0" class="link">Forgot
-                                                    your password?</a></p>
+                                            <form action="{{ route('login.post') }}" method="POST">
+                                                <h4 class="">Log In</h4>
+                                                @csrf
+                                                <div class="form-group">
+                                                    <label for="email">Email:</label>
+                                                    <input type="email" name="email" class="form-control"
+                                                        id="email" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="password">Password:</label>
+                                                    <input type="password" name="password" class="form-control"
+                                                        id="password" required>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Login</button>
+                                            </form>
+                                            @if ($errors->any())
+                                                <div class="alert alert-danger mt-3">
+                                                    <ul>
+                                                        @foreach ($errors->all() as $error)
+                                                            <li>{{ $error }}</li>
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="card-back">
                                     <div class="center-wrap">
                                         <div class="section text-center">
-                                            <h4 class="mb-4 pb-3">Sign Up</h4>
-                                            <div class="form-group">
-                                                <input type="text" name="logname" class="form-style"
-                                                    placeholder="Your Full Name" id="logname" autocomplete="off">
-                                                <i class="input-icon fa fa-user"></i>
-                                            </div>
-                                            <div class="form-group mt-2">
-                                                <input type="email" name="logemail" class="form-style"
-                                                    placeholder="Your Email" id="logemail" autocomplete="off">
-                                                <i class="input-icon fa fa-envelope"></i>
-                                            </div>
-                                            <div class="form-group mt-2">
-                                                <input type="password" name="logpass" class="form-style"
-                                                    placeholder="Your Password" id="logpass" autocomplete="off">
-                                                <i class="input-icon fa fa-lock"></i>
-                                            </div>
-                                            <a href="#" class="btn mt-4">Sign Up</a>
+                                            <h4 class="">Sign Up</h4>
+                                            <form action="{{ route('register.post') }}" method="POST">
+
+                                                @csrf
+                                                <div class="form-group">
+                                                    <label for="nama_pengguna">Nama Pengguna:</label>
+                                                    <input type="text" name="nama_pengguna" class="form-control"
+                                                        id="nama_pengguna" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="email">Email:</label>
+                                                    <input type="email" name="email" class="form-control"
+                                                        id="email" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="password">Password:</label>
+                                                    <input type="password" name="password" class="form-control"
+                                                        id="password" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="password_confirmation">Konfirmasi Password:</label>
+                                                    <input type="password" name="password_confirmation"
+                                                        class="form-control" id="password_confirmation" required>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary mt-3">Register</button>
+                                            </form>
+                                            @if ($errors->any())
+                                                <div class="alert alert-danger mt-3">
+                                                    <ul>
+                                                        @foreach ($errors->all() as $error)
+                                                            <li>{{ $error }}</li>
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
+                                            @endif
+
                                         </div>
                                     </div>
                                 </div>

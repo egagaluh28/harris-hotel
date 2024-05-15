@@ -12,4 +12,9 @@ class RoomController extends Controller
         $kamars = Kamar::limit(3)->get();
         return view('index', compact('kamars'));
     }
+
+    public function map()
+    {
+        return view ('');
+    }
 }

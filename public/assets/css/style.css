@@ -4644,7 +4644,7 @@ h6,
     }
 }
 .main-header.header-white.fixed-header .header-upper {
-    background: #17171a;
+    background: #0a0a0a;
 }
 
 /*******************************************************/
@@ -9754,4 +9754,54 @@ blockquote .blockquote-footer:before {
         width: 190px;
         height: 170px;
     }
+}
+
+#map {
+    height: 600px;
+    z-index: 1;
+}
+
+.custom-marker-red {
+    background-color: #ffa500;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    display: inline-block;
+    border: 2px solid white;
+}
+
+.custom-marker-blue {
+    background-color: #ffa500;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    display: inline-block;
+    border: 2px solid white;
+}
+
+.custom-marker-green {
+    background-color: #ffa500;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    display: inline-block;
+    border: 2px solid white;
+}
+
+.custom-marker-orange {
+    background-color: #ffa500;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    display: inline-block;
+    border: 2px solid white;
+}
+
+.custom-marker-purple {
+    background-color: #ffa500;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    display: inline-block;
+    border: 2px solid white;
 }

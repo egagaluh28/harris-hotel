@@ -5,7 +5,7 @@
         style="background-image: url(https://www.discoverasr.com/content/dam/tal/media/images/properties/indonesia/jakarta/harris-suites-fx-sudirman-jakarta/room-types/harris-bright/HFXS-booking-harrisbright1.jpg)">
         <div class="container">
             <div class="banner-inner text-white">
-                <h1 class="page-title wow fadeInUp delay-0-2s">Contact</h1>
+                <h1 class="page-title wow fadeInUp delay-0-2s">About</h1>
             </div>
         </div>
         <div class="bg-lines">

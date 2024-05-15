@@ -31,6 +31,10 @@
     <link rel="stylesheet" href="assets/css/slick.min.css">
     <!-- Main Style -->
     <link rel="stylesheet" href="assets/css/style.css">
+    {{-- menyambungkan leplet --}}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
 
 </head>
 
@@ -76,8 +80,8 @@
                                 <div class="navbar-collapse collapse clearfix">
                                     <ul class="navigation clearfix">
                                         <li><a href="/">Home</a></li>
-                                        <li><a href="/room-grid">Room</a></li>
-                                        <li><a href="/contact">Contact</a></li>
+                                        <li><a href="/room">Room</a></li>
+                                        <li><a href="/contact">About</a></li>
                                     </ul>
                                 </div>
                             </nav>
@@ -86,8 +90,19 @@
 
                         <!-- Menu Button -->
                         <div class="menu-btns">
-                            <a href="contact.html" class="theme-btn">Login <i class="far fa-angle-right"></i></a>
-                            <!-- menu sidbar -->
+                            @auth
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                                <a href="{{ route('logout') }}" class="theme-btn"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    Logout <i class="far fa-angle-right"></i>
+                                </a>
+                            @else
+                                <a href="{{ route('login') }}" class="theme-btn">Login <i
+                                        class="far fa-angle-right"></i></a>
+                            @endauth
+                            <!-- menu sidebar -->
                         </div>
                     </div>
                 </div>
@@ -271,36 +286,49 @@
                         </div>
                     </div>
                     <div class="col-lg-4 text-lg-end">
-                        <a class="theme-btn mb-40 wow fadeInRight delay-0-2s" href="room-grid.html">Explore Rooms <i
+                        <a class="theme-btn mb-40 wow fadeInRight delay-0-2s" href="/room-grid">Explore Rooms <i
                                 class="fal fa-angle-right"></i></a>
                     </div>
                 </div>
                 <div class="row">
                     @foreach ($kamars as $kamar)
                         <div class="col-xl-4 col-md-6">
-                            <div class="room-item wow fadeInUp delay-0-2s">
+                            <div class="room-item style-two wow fadeInUp delay-0-2s">
                                 <div class="image">
                                     <img src="{{ $kamar->image }}" alt="Room">
-                                    <a class="category" href="room-grid.html">{{ $kamar->tipe_kamar }}</a>
+                                    <!-- Gunakan URL gambar dari model $kamar -->
+                                    <a class="category"
+                                        href="{{ route('room-details', ['id' => $kamar->id]) }}">{{ $kamar->tipe_kamar }}</a>
+                                    <!-- Gunakan tipe_kamar atau informasi lainnya -->
                                 </div>
                                 <div class="content">
                                     <h4><a
-                                            href="room-details.html">{{ substr($kamar->deskripsi, 0, 60) }}{{ strlen($kamar->deskripsi) > 50 ? '...' : '' }}</a>
+                                            href="{{ route('room-details', ['id' => $kamar->id]) }}">{{ $kamar->nama }}</a>
                                     </h4>
-
-
+                                    @if ($kamar->gambar)
+                                        <!-- Pastikan ada gambar yang tersedia -->
+                                        <img src="{{ $kamar->gambar }}" alt="{{ $kamar->nama }}">
+                                    @else
+                                        {{-- <p>Tidak ada gambar untuk kamar ini.</p> --}}
+                                    @endif
                                     <ul class="blog-meta">
                                         <li>
                                             <i class="far fa-bed-alt"></i>
                                             <a href="#">Adults : {{ $kamar->person }}</a>
+                                            <!-- Gunakan jumlah orang atau informasi lainnya -->
                                         </li>
-                                        <!-- Tambahkan atribut yang sesuai untuk menampilkan size kamar -->
                                     </ul>
-                                    <div class="price">Price <span>${{ $kamar->harga }}</span>/per night</div>
+                                    <p>{{ implode(' ', array_slice(str_word_count($kamar->deskripsi, 1), 0, 20)) }}</p>
+                                    <!-- Gunakan deskripsi kamar atau informasi lainnya -->
+                                    <div class="price"><span>Rp.
+                                            {{ number_format($kamar->harga, 0, ',', '.') }}</span>/per night</div>
+
+                                    <!-- Gunakan harga kamar -->
                                 </div>
-                                <!-- Tambahkan tombol Book Now dengan link yang sesuai -->
-                                <a class="theme-btn style-two" href="contact.html">Book Now <i
-                                        class="fal fa-angle-right"></i></a>
+                                <a class="theme-btn" href="{{ route('room-details', ['id' => $kamar->id]) }}">Book
+                                    Now
+                                    <i class="fal fa-angle-right"></i></a>
+
                             </div>
                         </div>
                     @endforeach
@@ -403,98 +431,17 @@
         <section class="testimonials-area py-130 rpy-100 rel z-1 bg-color-and-shapes bgc-light">
             <div class="container">
                 <div class="row align-items-center justify-content-center">
-                    <div class="col-lg-7">
-                        <div class="testimonial-right text-black wow fadeInRight delay-0-2s">
-                            <div class="section-title mb-65 rmb-45">
-                                <span class="sub-title mb-15">Our Testimonials</span>
-                                <h2>What Our Customer Say Us</h2>
-                            </div>
-                            <div class="testimonial-part">
-                                <div class="testimonial-active">
-                                    <div class="testimonial-item">
-                                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus blanditiis
-                                            praesentium voluptatum deleniti atque corrupti quos dolores qua molestias
-                                            excepturi sint occaecati cupiditate non provident similique sunt in culpa
-                                            qui officia deserunte</p>
-                                        <div class="testi-author">
-                                            <img src="assets/images/testimonials/testi-thumb1.jpg" alt="Testi Thumb">
-                                            <div class="testi-des">
-                                                <h5 class="text-white">Diane C. Valentine</h5>
-                                                <span>CEO & Founder</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="testimonial-item">
-                                        <p>Corrupti quos dolores qua molestias excepturi sint occaecati cupiditate non
-                                            provident similique sunt in culpa qui officia deserunte At vero eos et
-                                            accusamus et iusto odio dignissimos ducimus blanditiis praesentium
-                                            voluptatum deleniti atque</p>
-                                        <div class="testi-author">
-                                            <img src="assets/images/testimonials/testi-thumb2.jpg" alt="Testi Thumb">
-                                            <div class="testi-des">
-                                                <h5>Michael A. Braun</h5>
-                                                <span>UI/UX Designer</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="testimonial-item">
-                                        <p>Voluptatum deleniti atque corrupti quos dolores qua molestias excepturi sint
-                                            occaecati At vero eos et accusamus et iusto odio dignissimos ducimus
-                                            blanditiis praesentium cupiditate non provident similique sunt in culpa qui
-                                            officia deserunte</p>
-                                        <div class="testi-author">
-                                            <img src="assets/images/testimonials/testi-thumb3.jpg" alt="Testi Thumb">
-                                            <div class="testi-des">
-                                                <h5>James V. Decastro</h5>
-                                                <span>Senior Marketer</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="testimonial-thums">
-                                    <div class="testi-thumb-item">
-                                        <img src="assets/images/testimonials/testi-thumb1.jpg" alt="Testi Thumb">
-                                    </div>
-                                    <div class="testi-thumb-item">
-                                        <img src="assets/images/testimonials/testi-thumb2.jpg" alt="Testi Thumb">
-                                    </div>
-                                    <div class="testi-thumb-item">
-                                        <img src="assets/images/testimonials/testi-thumb3.jpg" alt="Testi Thumb">
-                                    </div>
-                                    <div class="testi-thumb-item">
-                                        <img src="assets/images/testimonials/testi-thumb4.jpg" alt="Testi Thumb">
-                                    </div>
-                                    <div class="testi-thumb-item">
-                                        <img src="assets/images/testimonials/testi-thumb3.jpg" alt="Testi Thumb">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="testimonial-dots"></div>
-                        </div>
+                    <div class="container">
+                        <div id="map"></div>
                     </div>
                 </div>
-            </div>
-            <div class="bg-lines">
-                <span></span><span></span>
-                <span></span><span></span>
-                <span></span><span></span>
-                <span></span><span></span>
-                <span></span><span></span>
             </div>
             <div class="wave-shapes"></div>
             <div class="wave-shapes-two"></div>
         </section>
         <!-- Testimonials Area end -->
         {{-- maps --}}
-        <div class="container">
-            <div class="room-location mt-70 wow fadeInUp delay-0-2s">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m12!1m10!1m3!1d142190.2862584524!2d-74.01298319978558!3d40.721725351435126!2m1!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2sbd!4v1663473911885!5m2!1sen!2sbd"
-                    style="border:0; width: 100%;" allowfullscreen="" loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-        </div>
+
         {{-- endmaps --}}
         <!-- footer area start -->
         <footer class="main-footer bgc-black pt-100 rel z-1">
@@ -588,6 +535,10 @@
     </div>
     <!--End pagewrapper-->
 
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <script src="assets/js/map.js"></script>
 
 
     <!-- Jquery -->
