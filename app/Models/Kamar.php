@@ -21,4 +21,9 @@ class Kamar extends Model
         'bathrooms',
     ];
 
+    public function cabangHotel()
+    {
+        return $this->belongsTo(CabangHotel::class, 'cabang_id');
+    }
+
 }

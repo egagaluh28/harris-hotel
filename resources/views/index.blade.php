@@ -11,7 +11,9 @@
     <!-- Title -->
     <title>Harris Hotel</title>
     <!-- Favicon Icon -->
-    <link rel="shortcut icon" href="assets/images/ini.png" type="image/x-icon">
+    <link rel="shortcut icon"
+        href="{{ asset('https://www.discoverasr.com/content/dam/tal/common/assets/logos/brands/tauzia/harris/harris-logo-132x80.png') }}"
+        type="image/x-icon">
 
     <!-- Flaticon -->
     <link rel="stylesheet" href="assets/css/flaticon.min.css">
@@ -35,7 +37,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 
-
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
 </head>
 
 <body class="home-one">
@@ -52,7 +54,7 @@
 
                     <div class="header-inner rel d-flex align-items-center justify-content-between">
                         <div class="logo-outer">
-                            <div class="logo"><a href="index.html"><img
+                            <div class="logo"><a href="/"><img
                                         src="https://www.discoverasr.com/content/dam/tal/common/assets/logos/brands/tauzia/harris/harris-logo-132x80.png"
                                         alt="Logo" title="Logo"></a></div>
                         </div>
@@ -161,7 +163,7 @@
                                     <span class="sub-title"><i class="fal fa-arrow-right"></i> Welcome to
                                         Harris</span>
                                     <h1>Enjoy Vacations With <span>Harris Hotel</span></h1>
-                                    <a href="room-grid.html" class="theme-btn">Explore Our Rooms <i
+                                    <a href="/room" class="theme-btn">Explore Our Rooms <i
                                             class="far fa-angle-right"></i></a>
                                 </div>
                             </div>
@@ -181,7 +183,7 @@
                                     <span class="sub-title"><i class="fal fa-arrow-right"></i> Welcome to
                                         Harris</span>
                                     <h1>Enjoy Vacations With <span>Harris Hotel</span></h1>
-                                    <a href="room-grid.html" class="theme-btn">Explore Our Rooms <i
+                                    <a href="/room" class="theme-btn">Explore Our Rooms <i
                                             class="far fa-angle-right"></i></a>
                                 </div>
                             </div>
@@ -201,7 +203,7 @@
                                     <span class="sub-title"><i class="fal fa-arrow-right"></i> Welcome to
                                         Harris</span>
                                     <h1>Enjoy Vacations With <span>Harris Hotel</span></h1>
-                                    <a href="room-grid.html" class="theme-btn">Explore Our Rooms <i
+                                    <a href="/room" class="theme-btn">Explore Our Rooms <i
                                             class="far fa-angle-right"></i></a>
                                 </div>
                             </div>
@@ -537,7 +539,7 @@
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-
+    <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
     <script src="assets/js/map.js"></script>
 
 

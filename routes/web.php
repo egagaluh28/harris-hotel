@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 // Home
 Route::get('/', [RoomController::class, 'index'])->name('home');
 Route::get('/room', [GridRoomController::class, 'grid'])->name('room-grid');
+
 Route::get('/room/{id}', [GridRoomController::class, 'detail'])->name('room-details');
 Route::get('/contact', function () {
     return view('contact');
