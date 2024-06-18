@@ -83,7 +83,7 @@
                                     <ul class="navigation clearfix">
                                         <li><a href="/">Home</a></li>
                                         <li><a href="/room">Room</a></li>
-                                        <li><a href="/contact">About</a></li>
+                                        <li><a href="/about">About</a></li>
                                     </ul>
                                 </div>
                             </nav>
@@ -432,6 +432,13 @@
         <!-- Testimonials Area start -->
         <section class="testimonials-area py-130 rpy-100 rel z-1 bg-color-and-shapes bgc-light">
             <div class="container">
+            <div class="row justify-content-center">
+                        <div class="col-xl-5 col-lg-7 col-md-9">
+                            <div class="section-title text-center mb-50 rmb-40 wow fadeInUp delay-0-2s">
+                                <h2>Temukan Lokasi Hotel Harris Terdekat</h2>
+                            </div>
+                        </div>
+                    </div>
                 <div class="row align-items-center justify-content-center">
                     <div class="container">
                         <div id="map"></div>

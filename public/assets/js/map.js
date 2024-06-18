@@ -142,10 +142,11 @@ function onLocationFound(e) {
 
     L.marker(userLatLng)
         .addTo(map)
-        .bindPopup(`You are within ${radius} meters from this point`)
+        .bindPopup(`You are here`)
         .openPopup();
 
-    L.circle(userLatLng, radius).addTo(map);
+    // Hapus baris berikut untuk menghilangkan radius
+    // L.circle(userLatLng, radius).addTo(map);
 }
 
 // Fungsi untuk menangani error lokasi
