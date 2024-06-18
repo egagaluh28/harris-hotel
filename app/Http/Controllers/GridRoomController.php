@@ -38,8 +38,10 @@ class GridRoomController extends Controller
     public function detail($id)
     {
         $kamar = Kamar::findOrFail($id); // Mengambil data kamar berdasarkan ID
-        return view('room-details', compact('kamar'));
+        $cabanghotel = CabangHotel::find($kamar->cabang_id); // Mengambil data cabang hotel berdasarkan ID cabang pada kamar
+        return view('room-details', compact('kamar', 'cabanghotel'));
     }
+
 
     public function getFormattedNominals()
     {

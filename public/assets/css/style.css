@@ -9760,51 +9760,66 @@ blockquote .blockquote-footer:before {
     height: 600px;
     z-index: 1;
 }
-
-.custom-marker-red {
-    background-color: #ffa500;
-    border-radius: 50%;
-    width: 70px;
-    height: 70px;
-    display: inline-block;
-    border: 2px solid white;
-}
-
-.custom-marker-blue {
-    background-color: #ffa500;
-    border-radius: 50%;
-    width: 70px;
-    height: 70px;
-    display: inline-block;
-    border: 2px solid white;
-}
-
-.custom-marker-green {
-    background-color: #ffa500;
-    border-radius: 50%;
-    width: 70px;
-    height: 70px;
-    display: inline-block;
-    border: 2px solid white;
-}
-
+/* CSS custom untuk ikon marker */
 .custom-marker-orange {
-    background-color: #ffa500;
+    background-color: #FF8C00;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
-    width: 70px;
-    height: 70px;
-    display: inline-block;
-    border: 2px solid white;
+    border: 2px solid #fff;
 }
 
-.custom-marker-purple {
-    background-color: #ffa500;
+.waypoint-icon {
+    background-color: #0f4c81;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
-    width: 70px;
-    height: 70px;
-    display: inline-block;
-    border: 2px solid white;
+    border: 2px solid #fff;
 }
+
+/* CSS untuk legenda dan tata letak judul */
+.info.legend {
+    background: white;
+    padding: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+
+.info.legend h4 {
+    margin: 0 0 5px;
+    color: #333;
+}
+
+.info.legend p {
+    margin: 0;
+    color: #777;
+}
+
+.info.legend i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.7;
+}
+
+.google-maps-button {
+    margin: 10px;
+    text-align: center;
+}
+
+.google-maps-button a {
+    color: white;
+    background-color: #007bff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.google-maps-button a:hover {
+    background-color: #0056b3;
+}
+
 .route-btn,
 .btn-primary {
     width: 100%;
@@ -9884,4 +9899,47 @@ blockquote .blockquote-footer:before {
 .btn-filter:hover {
     background: #3b5c3c; /* Mengubah warna latar belakang saat tombol digulirkan */
     color: white;
+}
+
+.legend {
+    background: white;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+}
+
+.radius-legend {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.radius-circle {
+    width: 20px; /* Atur ukuran lingkaran di sini */
+    height: 20px; /* Atur ukuran lingkaran di sini */
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.radius-legend span {
+    font-size: 14px;
+}
+.custom-marker-orange {
+    background-color: #ffa500;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    display: inline-block;
+    border: 2px solid white;
+}
+
+.waypoint-icon {
+    background-color: #00e1ff;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    display: inline-block;
+    border: 2px solid white;
 }

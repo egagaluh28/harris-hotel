@@ -89,43 +89,36 @@
                     </div>
                 </div>
 
-
                 <div class="col-lg-5">
                     <div class="room-details-sidebar bgc-lighter p-50 rp-40">
-                        {{-- <form action="{{ route('pesan-kamar') }}" method="POST"
-                            class="widget-search-filter wow fadeInUp delay-0-4s">
+                        <h3>Reservasi Kamar</h3>
+                        <form id="reservasiForm">
                             @csrf
+                            <input type="hidden" name="branch" value="{{ $cabanghotel->nama_cabang }}">
+                            <input type="hidden" name="nama_kamar" value="{{ $kamar->tipe_kamar }}">
+                            <input type="hidden" id="isAuthenticated" value="{{ Auth::check() }}">
                             <div class="form-group">
-                                <label for="checkin">Check In</label>
-                                <input type="date" id="checkin" required>
+                                <label for="nama_pemesan">Nama Pemesan:</label>
+                                <input type="text" class="form-control" id="nama_pemesan" name="nama_pemesan" required>
                             </div>
                             <div class="form-group">
-                                <label for="checkout">Check Out</label>
-                                <input type="date" id="checkout" required>
+                                <label for="checkin">Tanggal Check-in:</label>
+                                <input type="date" class="form-control" id="checkin" name="checkin" required>
                             </div>
                             <div class="form-group">
-                                <label for="adults">Adults</label>
-                                <select name="adults" id="adults">
-                                    <option value="adults1">1</option>
-                                    <option value="adults2">2</option>
-                                    <option value="adults3" selected>3</option>
-                                    <option value="adults3">4</option>
-                                </select>
+                                <label for="checkout">Tanggal Check-out:</label>
+                                <input type="date" class="form-control" id="checkout" name="checkout" required>
                             </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp" placeholder="Enter email" required>
-                            </div>
-                            <button class="theme-btn w-100">Booking <i class="far fa-angle-right"></i></button>
-                        </form> --}}
+                            <input type="hidden" name="harga_kamar" value="{{ $kamar->harga }}">
+                            <!-- Isi formulir reservasi -->
+                            <button type="button" class="btn btn-primary" onclick="submitReservasi()">Reservasi via
+                                WhatsApp</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="container mt-3">
-            <div id="map"></div>
-        </div>
+
         <div class="bg-lines for-bg-white">
             <span></span><span></span>
             <span></span><span></span>
@@ -134,5 +127,51 @@
             <span></span><span></span>
         </div>
     </section>
-    
+    <script>
+        function submitReservasi() {
+        var isAuthenticated = document.getElementById('isAuthenticated').value;
+        if (isAuthenticated == 0) { // Jika user belum login
+            window.location.href = "/login"; // Redirect ke halaman login
+            return;
+        }
+
+        var branch = document.getElementsByName('branch')[0].value;
+        var namaKamar = document.getElementsByName('nama_kamar')[0].value;
+        var namaPemesan = document.getElementById('nama_pemesan').value;
+        var checkin = document.getElementById('checkin').value;
+        var checkout = document.getElementById('checkout').value;
+        var hargaKamar = document.getElementsByName('harga_kamar')[0].value;
+
+        // Pastikan semua field terisi
+        if (!branch || !namaKamar || !namaPemesan || !checkin || !checkout || !hargaKamar) {
+            alert("Harap mengisi semua field sebelum melanjutkan.");
+            return;
+        }
+
+        // Format harga untuk WhatsApp
+        var formattedHargaKamar = new Intl.NumberFormat('id-ID', {
+            style: 'currency',
+            currency: 'IDR'
+        }).format(hargaKamar);
+
+        // Buat pesan WhatsApp dengan format yang lebih rapi dan formal
+        var pesanWhatsApp = "Reservasi Kamar\n\n" +
+            "Cabang: " + branch + "\n" +
+            "Tipe Kamar: " + namaKamar + "\n" +
+            "Nama Pemesan: " + namaPemesan + "\n" +
+            "Tanggal Check-in: " + checkin + "\n" +
+            "Tanggal Check-out: " + checkout + "\n" +
+            "Total Harga: " + formattedHargaKamar + "\n\n" +
+            "Terima kasih.";
+
+        // Encode pesan untuk URL
+        var encodedMessage = encodeURIComponent(pesanWhatsApp);
+
+        // Redirect ke WhatsApp dengan pesan yang telah dibuat
+        window.location.href = "https://wa.me/6281585290160?text=" + encodedMessage;
+    }
+
+
+    </script>
+
 @endsection

@@ -11,8 +11,10 @@ Route::get('/', [RoomController::class, 'index'])->name('home');
 Route::get('/room', [GridRoomController::class, 'grid'])->name('room-grid');
 
 Route::get('/room/{id}', [GridRoomController::class, 'detail'])->name('room-details');
-Route::get('/contact', function () {
-    return view('contact');
+Route::post('/reservasi-whatsapp', 'ReservasiController@reservasiViaWhatsApp')->name('reservasi.whatsapp');
+
+Route::get('/about', function () {
+    return view('about');
 });
 
 
@@ -22,3 +24,5 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register'])->name('register.post');
+
+// reservasi

@@ -35,7 +35,7 @@
                             <ul class="navigation clearfix ml-auto">
                                 <li><a href="/">Home</a></li>
                                 <li><a href="/room">Room</a></li>
-                                <li><a href="/contact">About</a></li>
+                                <li><a href="/about">About</a></li>
                             </ul>
                         </div>
                     </nav>
